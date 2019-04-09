@@ -1,8 +1,15 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 
 app.get('/', (req, res)=>{
-    res.send("hello world");
+    fs.readFile('index.html', (err, data)=>{
+        if(err){
+            console.log(err);
+        } else {
+            res.end(data);
+        }
+    });
 });
 
 app.listen(8082, (req, res)=>{
